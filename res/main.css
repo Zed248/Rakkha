@@ -112,24 +112,25 @@ body {
 .top-bar {
     width: 100%;
     height: 50px;
-    background-color: rgba(0, 16, 34, 0.87);
+    background-color: rgba(5, 48, 98, 0.87);
     border-bottom: 1px solid rgba(255, 255, 255, 0.219);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 5;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0 15em 0 15em;
 }
 
 .top-bar .blog-title {
     font-family: var(--main-title-font-style);
     font-size: var(--font-max);
     color: var(--primary-text-color);
-    width: 100px;
+    width: 30%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -144,22 +145,30 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translate(50px, 10px);
+    transform: translate(80px, 10px);
     border-radius: 50%;
+}
+
+.top-bar-link {
+    width: 70%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .top-bar a {
     text-decoration: none;
     color: var(--primary-text-color);
     font-family: var(--primary-font-style);
-    font-size: var(--font-medium);
+    font-size: var(--font-small);
     width: auto;
     padding: 0 1em 0 1em;
     height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 5px;
+    margin-left: 15px;
 }
 
 .top-bar a:hover, .top-bar a.active {
@@ -168,16 +177,15 @@ body {
 }
 
 .top-bar-follower {
-    width: 300px;
+    width: 300;
     height: 25px;
     background-color: #02020236;
+    margin-top: 50px;
     position: fixed;
-    top: 50px;
-    right: 0;
-    margin-right: 4em;
+    padding-left: 15em;
     z-index: 5;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -194,7 +202,7 @@ body {
 }
 
 .top-bar-follower .btns-container {
-    width: auto;
+    width: 100px;
     height: 25px;
     display: flex;
     justify-content: center;

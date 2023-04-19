@@ -74,7 +74,143 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            padding: 0 15em 0 15em;
+            padding-top: 100px;
         }
+
+        .html-size-bar {
+            width: 230px;
+            height: 1000vh;
+            border-right: 2px solid rgba(220, 20, 60, 0.815);
+            position: absolute;
+        }
+
+        .html-size-bar::before {
+            position: fixed;
+            content: 'Console.log("Hello World") >>HTML<<';
+            color: crimson;
+            font-family: var(--primary-font-style);
+            font-size: 23pt;
+            display: flex;
+            background-color: #06060641;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 108px;
+            border-bottom: 2px solid crimson;
+        }
+
+        .html-size-bar-circle1 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: crimson;
+            border-radius: 50%;
+            transform: translate(219px, 100px);
+            z-index: 5;
+            animation: down-up1 4s infinite;
+        }
+
+        @keyframes down-up1 {
+            0% {transform: translate(219px, 0px)}
+            50% {transform: translate(219px, 700px);}
+            100% {transform: translate(219px, 0px);}
+
+        }
+
+
+        .html-size-bar-circle5 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: crimson;
+            border-radius: 50%;
+            transform: translate(219px, 100px);
+            z-index: 5;
+            animation: left-right 7s infinite;
+        }
+
+        @keyframes left-right {
+            0% {transform: translate(0px, 100px)}
+            50% {transform: translate(800px, 100px);}
+            100% {transform: translate(0px, 100px);}
+
+        }
+
+        
+
+
+        .html-size-bar-circle2 {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background-color: crimson;
+            border-radius: 50%;
+            transform: translate(214px, 0px);
+            z-index: 5;
+            animation: down-up 5s infinite;
+        }
+
+        @keyframes down-up {
+            0% {transform: translate(214px, 0px)}
+            50% {transform: translate(214px, 700px);}
+            100% {transform: translate(214px, 0px);}
+
+        }
+
+        .html-size-bar-circle3 {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: crimson;
+            border-radius: 50%;
+            transform: translate(224px, 450px);
+            z-index: 5;
+            animation: down-up3 6s infinite;
+        }
+
+        @keyframes down-up3 {
+            0% {transform: translate(224px, 0px)}
+            50% {transform: translate(224px, 700px);}
+            100% {transform: translate(224px, 0px);}
+
+        }
+
+        .html-size-bar-circle4 {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background-color: crimson;
+            border-radius: 50%;
+            transform: translate(222px, 650px);
+            z-index: 5;
+            animation: down-up4 4s infinite;
+        }
+
+        @keyframes down-up4 {
+            0% {transform: translate(222px, 0px)}
+            50% {transform: translate(222px, 700px);}
+            100% {transform: translate(222px, 0px);}
+
+        }
+
+        .side-bar-items {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        .side-bar-items a {
+            text-decoration: none;
+            color: white;
+            font-family: var(--primary-font-style);
+
+        }
+
 
 
         .code-display-container {
@@ -131,10 +267,10 @@
         .html-expalanation {
             width: 100%;
             height: auto;
-            background-color: var(--black);
             margin: 1em 0 1em 0;
-            padding: 1em 18em 1em 18em;
+            padding: 1em;
             color: white;
+            font-family: var(--primary-font-style);;
         }
 
         .html-element-selector {
@@ -155,8 +291,8 @@
         #ele-input {
             width: 300px;
             height: 34px;
-            background: #00758a44;
-            color: white;
+            background: #18caea44;
+            color: rgb(255, 255, 255);
             outline: none;
             border: none;
             margin: 1em;
@@ -164,15 +300,38 @@
             font-family: var(--primary-font-style);
         }
 
+        #ele-input::placeholder {
+            color: white;
+        }
+
         .show-ele-code {
             width: 100%;
             height: 50px;
-            background-color: rgba(250, 235, 215, 0.226);
-            color: white;
+            color: rgb(0, 230, 251);
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: var(--primary-font-style);
+        }
+
+        h4 {
+            font-family: var(--link-font-style);
+            font-weight: normal;
+            margin: 1em;
+            background-color: rgba(250, 235, 215, 0.226);
+            border-bottom: 1px solid crimson;
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            font-family: var(--primary-font-style);
+            margin: 1em;
+            font-size: var(--font-medium);
         }
 
         .html-ele-model {
@@ -181,6 +340,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color:rgb(0, 230, 251);
             box-shadow: 1px 5px 14px rgba(220, 20, 60, 0.507);
             border-radius: 15px;
             font-family: var(--primary-font-style);
@@ -348,6 +508,8 @@
             font-family: var(--primary-font-style);
         }
 
+        
+
         /* Responsive */
         @media screen and (max-width: 970px) {
             * {
@@ -365,13 +527,24 @@
 <body>
     <div class="wrapper">
         <div class="html-size-bar">
-
+            <div class="side-bar-items">
+                <h4>Elements</h4>
+                <a href=""></a>
+            </div>
+            <div class="html-size-bar-circle1"></div>
+            <div class="html-size-bar-circle2"></div>
+            <div class="html-size-bar-circle3"></div>
+            <div class="html-size-bar-circle4"></div>
+            <div class="html-size-bar-circle5"></div>
         </div>
         <section>
             <div class="html-element-selector">
                 <h3>Element Selector</h3>
+                <p>This is a playground Element Extractor of HTML Code, you can add every html elements in input. Type your element without parenthesis symbol.</p>
                 <input id="ele-input" type="text" name="elements" placeholder="Enter html elements">
+                <h4>Code Sample</h4>
                 <div class="show-ele-code"></div>
+                <h4>Output</h4>
                 <div class="html-ele-model">
                     Hello
                 </div>
@@ -383,6 +556,7 @@
             </div>
 
             <div class="html-expalanation">
+                <h4>Editor Output</h4>
                 <p>This is a sample form of html structure</p>
             </div>
             <div class="html-output-area">
@@ -451,10 +625,14 @@
         let exeCuteElements;
 
 
+
         function animate() {
             requestAnimationFrame(animate)
             getHeight = lineNumbers.clientHeight;
             textarea.style.height = getHeight + "px";
+
+            
+            
 
             //updatelinenumber
             updateLineNumbers();
@@ -466,9 +644,15 @@
             let getEle = ele_input.value;
 
             let popSymbol = "<" + getEle + ">";
+            let closeSymbol = "</" + getEle + ">"
+
+            if(getEle == "") {
+                popSymbol = "";
+                closeSymbol = "";
+            }
 
 
-            exeCuteElements = popSymbol + "Hello" + "</" + getEle + ">"
+            exeCuteElements = popSymbol + "Hello" + closeSymbol
 
             ele_model.innerHTML = exeCuteElements;
             ele_showcode.innerText = exeCuteElements;
