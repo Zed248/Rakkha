@@ -85,7 +85,7 @@
             <div class="blog-title">Zed</div>
             <div class="top-bar-link">
                 <a href="../index.html">Home</a>
-                <a href="./project.html"  class="active">My Projects</a>
+                <a href="./project.html" class="active">My Projects</a>
                 <a href="./achievement.html">Achievement</a>
                 <a href="./knowledge.html">Knowledge</a>
             </div>
@@ -117,36 +117,36 @@
                             <li><a href="../pages/category/css3.html"><i class="fa-brands fa-css3-alt"></i>CSS</a></li>
                             <li><a href="../pages/category/js.html"><i class="fa-brands fa-node-js"></i>JavaScript</a>
                             <li><a href="./category/tutorial.html"><i class="fa-brands fa-youtube"></i>Tutorial</a></li>
-                            </li>
-                        </ul>
+                    </li>
+                </ul>
 
-                    </li>
-                    <li class="logo-and-text">
-                        <a href="../pages/category/about.html">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">About</span>
-                        </a>
-                    </li>
-                    <li class="logo-and-text">
-                        <a href="../pages/category/photoshop.html">
-                            <i class="fas fa-shapes"></i>
-                            <span class="nav-item">Photoshop</span>
-                        </a>
-                    </li>
+                </li>
+                <li class="logo-and-text">
+                    <a href="../pages/category/about.html">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">About</span>
+                    </a>
+                </li>
+                <li class="logo-and-text">
+                    <a href="../pages/category/photoshop.html">
+                        <i class="fas fa-shapes"></i>
+                        <span class="nav-item">Photoshop</span>
+                    </a>
+                </li>
 
-                    <li class="logo-and-text">
-                        <a href="../pages/category/software.html">
-                            <i class="fa-brands fa-app-store-ios"></i>
-                            <span class="nav-item">Software Download</span>
-                        </a>
-                    </li>
+                <li class="logo-and-text">
+                    <a href="../pages/category/software.html">
+                        <i class="fa-brands fa-app-store-ios"></i>
+                        <span class="nav-item">Software Download</span>
+                    </a>
+                </li>
 
-                    <li class="logo-and-text">
-                        <a href="../pages/category/youtube.html">
-                            <i class="fa-brands fa-youtube"></i>
-                            <span class="nav-item">YouTube</span>
-                        </a>
-                    </li>
+                <li class="logo-and-text">
+                    <a href="../pages/category/youtube.html">
+                        <i class="fa-brands fa-youtube"></i>
+                        <span class="nav-item">YouTube</span>
+                    </a>
+                </li>
 
                 </ul>
             </nav>
@@ -160,6 +160,9 @@
                 <hr size="1px" color="white" width="100%">
                 <h3 class="pj-title">Canvas Circular Motion</h3>
                 <canvas id="circularmotion"></canvas>
+
+                <h3 class="pj-title">Canvas Gravity</h3>
+                <canvas id="gravity"></canvas>
 
 
             </div>
@@ -332,7 +335,7 @@
 
 
     </script>
-  
+
     <script>
 
         const ccanvas = document.querySelector('#circularmotion');
@@ -382,7 +385,7 @@
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
 
-        function randomColor(colors) {
+        function randomColor() {
             return colors[Math.floor(Math.random() * colors.length)];
         }
 
@@ -408,6 +411,15 @@
                 // // Drag effect
                 // this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
                 // this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
+
+                ccanvas.addEventListener('click', (e) => {
+                    this.velocity -= 0.05;
+                })
+
+                ccanvas.addEventListener('contextmenu', (e) => {
+                    e.preventDefault()
+                    this.velocity = 0.05;
+                })
 
                 // Circular Motion
                 this.x = this.lastMouse.x + Math.cos(this.radians) * this.distanceFromCenter;
@@ -454,6 +466,87 @@
 
         init();
         animate();
+
+        let gcanvas = document.querySelector('#gravity');
+
+        gcanvas.width = w = 500;
+        gcanvas.height = h = 400;
+
+        let cGravity = gcanvas.getContext('2d');
+
+
+        class Gravity {
+            constructor(x, y, dx, dy, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.radius = radius;
+                this.color = color;
+
+            }
+
+            draw() {
+                cGravity.beginPath();
+                cGravity.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                cGravity.fillStyle = this.color;
+                cGravity.fill();
+                cGravity.closePath()
+            }
+
+            update() {
+                let gravityD = 1;
+                let friction = 0.9;
+
+                if(this.y + this.radius + this.dy > h ) {
+                    this.dy = -this.dy * friction;
+                } else {
+                    this.dy += gravityD;
+                }
+
+                if(this.x + this.radius + this.dx > w || this.x - this.radius < 0) {
+                    this.dx = -this.dx;
+                }
+                this.y += this.dy;
+                this.x += this.dx;
+
+                gcanvas.addEventListener('click', (e) => {
+                    this.y = 0
+                })
+
+                this.draw()
+            }
+        }
+
+        let gravityParticles;
+        let gravityParticleCount = 30;
+        function gravityInit() {
+            gravityParticles = [];
+
+            for (var i = 0; i < gravityParticleCount; i++) {
+                let radius = randomIntFormRange(8, 18);
+                let x = randomIntFormRange(0, w - radius);
+                let y = randomIntFormRange(0, h - radius);
+                let dx = randomIntFormRange(-2, 2);
+                let dy = randomIntFormRange(-2, 2);
+                let color = randomColor();
+
+                gravityParticles.push(new Gravity(x, y, dx, dy, radius, color));
+            }
+        }
+
+        function gAnimate() {
+            requestAnimationFrame(gAnimate);
+            cGravity.clearRect(0, 0, w, h);
+
+            gravityParticles.forEach(gravityParticle => {
+                gravityParticle.update();
+            })
+        }
+
+
+        gravityInit();
+        gAnimate();
     </script>
     <script type="text/JavaScript" src="../res/script.js"></script>
 
